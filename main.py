@@ -1,13 +1,13 @@
  # main.py                                                                                                                              
- from participant import HumanParticipant, AIParticipant                                                                                
- from facilitator import Facilitator                                                                                                    
- from history import History                                                                                                            
+from participant import HumanParticipant, AIParticipant                                                                                
+from facilitator import Facilitator                                                                                                    
+from history import History                                                                                                            
                                                                                                                                         
  # Initialize the history                                                                                                               
- history = History()                                                                                                                    
+history = History()                                                                                                                    
                                                                                                                                         
  # Initialize the facilitator                                                                                                           
- facilitator = Facilitator(temperature=0.5)                                                                                             
+facilitator = Facilitator(temperature=0.5)                                                                                             
                                                                                                                                         
  # Initialize the participants                                                                                                          
  participants = [                                                                                                                       
