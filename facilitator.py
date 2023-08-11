@@ -20,4 +20,7 @@ class Facilitator:
             response = self.chain.run(proposal=proposal, history=self.history.get_full_history())
             if response == "end meeting":
                 return False
+
+    def get_participant_names(self):
+        return ', '.join([participant.name for participant in self.participants])
         
