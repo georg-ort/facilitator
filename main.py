@@ -2,12 +2,16 @@
 from participant import HumanParticipant, AIParticipant
 from facilitator import Facilitator
 from history import History
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+
 
 # Initialize the history
 history = History()
 
-# Initialize the facilitator
-facilitator = Facilitator(temperature=0.5)
+
 
 # Initialize the participants
 participants = [
@@ -17,8 +21,15 @@ participants = [
     AIParticipant("AI 2", "You are a genius scientist", 0.6),
 ]
 
-# Start the decision-making process
-question = input("Please enter your proposal: ")
+# Initialize the facilitator
+facilitator = Facilitator(temperature=0.5, participants=participants)
+
+proposal = input("Please enter your proposal: ")
+
+# Start the meeting
+facilitator.start(proposal)
+
+
 while True:
     for participant in participants:
         response = participant.respond(question, history)
