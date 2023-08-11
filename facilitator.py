@@ -6,16 +6,18 @@ from langchain.chat_models import ChatOpenAI
 from config.config import Config
 
 class Facilitator:
-    def __init__(self, temperature):
+    def __init__(self, temperature, participants, history):
         self.temperature = temperature
-        self.llm = ChatOpenAI(temperature=self.temperature, model="gpt-4")
-        
-        self.prompt = PromptTemplate.from_template(Config.PROMPT_TEMPLATE)
-        
+        self.llm = ChatOpenAI(temperature=self.temperature, model="gpt-4")  
+        self.prompt = PromptTemplate.from_template(Config.FACILITATOR_PROMPT_TEMPLATE)
         self.chain = LLMChain(prompt=self.prompt, llm=self.llm )
+        self.participants = participants
+        self.history = history
         
-        self.llm = ChatOpenAI(temperature=temperature, model="gpt-4")
 
-    def guide(self, question, history):
-        response = self.llm.run(question=question, history=history.get_full_history())
-        return response
+    def guide(self, proposal):
+        while True:
+            response = self.chain.run(proposal=proposal, history=self.history.get_full_history())
+            if response == "end meeting":
+                return False
+        
