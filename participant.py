@@ -1,6 +1,7 @@
 # participant.py
 from abc import ABC, abstractmethod
-from langchain import PromptTemplate, LLMChain, ChatOpenAI
+from langchain import PromptTemplate, LLMChain
+from langchain.chat_models import ChatOpenAI
 from config.config import Config
 
 
@@ -32,6 +33,6 @@ class AIParticipant(Participant):
 
     def respond(self, question, history):
         response = self.chain.run(question=question, history=history.get_full_history(), name=self.name,
-                                  backstory=self.backstory, question=question)
+                                  backstory=self.backstory)
         history.add_to_history(self.name, response)
         return response

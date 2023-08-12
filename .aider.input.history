@@ -1,0 +1,404 @@
+
+# 2023-08-08 22:25:08.203801
++Hi please help me to setup a new project which I will outline later on. But please before you write any code make sure you understand all the requirements very well and ask all the clarification questions before you begin. Can you do that?
+
+# 2023-08-08 23:00:55.311370
++Before I answer your questions here are some additional infos:
++- forget about problem or question. Let's instead focus on proposals!
++- a group can be defined in a group config file
++-- a group has participants and a common goal. As an example there should be two humans and two AIs already be configured with made up names and back stories. Also a common goal should be made up.
++- the sequence of the script should always be exactly like this: 
++-- prompt a proposal from the user
++-- initiate the group of participants as configured in random order. 
++-- facilitate the decision making process exactly according to the sociocracy consent 
++process. (I will explain this process in more detail later.)
++--- when human participants are addressed by the facilitator the answer will be prompted 
++--- when ai participants are being addressed the pre defined llm model is being asked
++-- once a proposal has been accepted (all participants gave their consent) summarise it and present it to everybody and end the meeting
++
++
++Now I provide answers to your questions:
++1.
++A group consists of at least two participants (human or AI) and the maximum is 10 for now but that might change later on.
++The interaction is all in text form. And the Facilitator will facilitate in real-time.
++
++2.
++Let's forget about problems and questions and let's focus on proposals at first. 
++The facilitator mostly guides the group to a consensus but can be creative in modifying a proposal in order to get the consent of all participants. 
++
++3.
++The facilitator asks the group for consent on the latest version of a proposal. This means he asks every participant in turn if they give consent. A proposal can only pass if all participants give their consent to it. 
++
++
++
++
++
++Certainly. Here are the requirements, considering the refinements and updates we've discussed:
++
++---
++
++
++
++### **AI-Facilitated Group Decision-Making Tool:**
++
++1. **Configuration:**
++   - The system shall support a group configuration file, allowing the specification of participants and a common goal.
++   - The group configuration file shall support the definition of up to 10 participants (comprising humans and AI models).
++   - Each AI participant in the configuration must specify which LLM (language learning model) should be used for its responses.
++   - An example group shall be pre-configured, consisting of two humans and two AIs, complete with made-up names and backstories.
++
++2. **Operational Flow:**
++   - The system shall start by prompting the system for a proposal.
++   - Once a proposal is received, the system shall initiate the group of participants, and the AI facilitator will present the proposal.
++   - The decision-making process shall adhere to the sociocratic consent process: Proposal Presentation, Clarifying Questions, Reaction Round, Amend and Clarify, Consent Round, Addressing Objections, and Closure.
++   - After every round, the facilitator shall individually address each participant.
++   - If an objection arises during the Consent Round for the third time, the facilitator shall adjourn the meeting.
++   - Upon reaching a consented decision, the facilitator shall summarize the outcome and end the meeting.
++
++3. **Interaction Handling:**
++   - The facilitator is the primary communication entity and shall guide the entire group to a consensus.
++   - All interactions shall be in text form.
++   - Only the facilitator can modify the proposal, but it may be based on participant input.
++   - When a human participant is addressed, their input will be prompted by the system.
++   - When an AI participant is addressed, the pre-defined LLM model associated with that participant will generate the response.
++
++4. **Participant Engagement:**
++   - The facilitator shall address participants directly by their name, ensuring personalized engagement.
++   - Participants can only respond when directly addressed by the facilitator.
++
++5. **Sociocratic Consent Process:**
++   - The facilitator shall ensure that each step of the sociocratic consent process is adhered to, ensuring transparency and clarity throughout.
++
++
++
++
++### **Example Facilitation Process:**
++
++1. **AI Facilitator:** "Please provide your proposal for the group to discuss."
++   
++2. **System:** "I propose that we increase the monthly budget for marketing by 20%."
++
++3. **AI Facilitator:** "Thank you. The proposal on the table is to increase the monthly marketing budget by 20%. Let's start with clarifying questions. [Participant 1], do you have any clarifying questions about the proposal?"
++
++4. **Participant 1:** "What is the current budget?"
++   
++5. **AI Facilitator:** "The current budget is $10,000. [Participant 2], do you have any clarifying questions about the proposal?"
++
++6. **Participant 2:** "No questions."
++
++7. **AI Facilitator:** "Thank you. Let's move to the reaction round. [Participant 1], what is your initial reaction?"
++
++8. **Participant 1:** "I believe it might be beneficial, but I'm concerned about the ROI."
++
++9. **AI Facilitator:** "[Participant 2], your initial reaction?"
++
++10. **Participant 2:** "I agree with the proposal."
++
++11. **AI Facilitator:** "Considering the concerns raised by [Participant 1] about ROI, I suggest a modification: Increase the budget by 10% with a detailed ROI analysis after 2 months. Let's now proceed to the consent round with this amended proposal. [Participant 1], are you willing to give your consent to this modified proposal?"
++
++12. **Participant 1:** "Yes, I am."
++
++13. **AI Facilitator:** "Thank you. [Participant 2], with the modified proposal, do you give your consent?"
++
++14. **Participant 2:** "Yes, I consent."
++
++15. **AI Facilitator:** "The proposal to increase the marketing budget by 10% with an ROI analysis after 2 months has been consented to by all participants. This concludes our meeting."
++
++
++
+
+# 2023-08-09 09:45:07.337827
++1 yaml
+
+# 2023-08-09 09:47:06.686095
++hi, I want to create a new project which I will describe to you in detail. Please don't write any code before you have completely understand the requirements. You can ask as many questions you like to clarify and then only start coding. Is that ok?
+
+# 2023-08-09 09:48:11.208164
++
++### **AI-Facilitated Group Decision-Making Tool:**
++
++1. **Configuration:**
++   - The system shall support a group configuration file, allowing the specification of participants and a common goal.
++   - The group configuration file shall support the definition of up to 10 participants (comprising humans and AI models).
++   - Each AI participant in the configuration must specify which LLM (language learning model) should be used for its responses.
++   - An example group shall be pre-configured, consisting of two humans and two AIs, complete with made-up names and backstories.
++
++2. **Operational Flow:**
++   - The system shall start by prompting the system for a proposal.
++   - Once a proposal is received, the system shall initiate the group of participants, and the AI facilitator will present the proposal.
++   - The decision-making process shall adhere to the sociocratic consent process: Proposal Presentation, Clarifying Questions, Reaction Round, Amend and Clarify, Consent Round, Addressing Objections, and Closure.
++   - After every round, the facilitator shall individually address each participant.
++   - If an objection arises during the Consent Round for the third time, the facilitator shall adjourn the meeting.
++   - Upon reaching a consented decision, the facilitator shall summarize the outcome and end the meeting.
++
++3. **Interaction Handling:**
++   - The facilitator is the primary communication entity and shall guide the entire group to a consensus.
++   - All interactions shall be in text form.
++   - Only the facilitator can modify the proposal, but it may be based on participant input.
++   - When a human participant is addressed, their input will be prompted by the system.
++   - When an AI participant is addressed, the pre-defined LLM model associated with that participant will generate the response.
++
++4. **Participant Engagement:**
++   - The facilitator shall address participants directly by their name, ensuring personalized engagement.
++   - Participants can only respond when directly addressed by the facilitator.
++
++5. **Sociocratic Consent Process:**
++   - The facilitator shall ensure that each step of the sociocratic consent process is adhered to, ensuring transparency and clarity throughout.
++
++
++
++
++### **Example Facilitation Process:**
++
++1. **AI Facilitator:** "Please provide your proposal for the group to discuss."
++   
++2. **System:** "I propose that we increase the monthly budget for marketing by 20%."
++
++3. **AI Facilitator:** "Thank you. The proposal on the table is to increase the monthly marketing budget by 20%. Let's start with clarifying questions. [Participant 1], do you have any clarifying questions about the proposal?"
++
++4. **Participant 1:** "What is the current budget?"
++   
++5. **AI Facilitator:** "The current budget is $10,000. [Participant 2], do you have any clarifying questions about the proposal?"
++
++6. **Participant 2:** "No questions."
++
++7. **AI Facilitator:** "Thank you. Let's move to the reaction round. [Participant 1], what is your initial reaction?"
++
++8. **Participant 1:** "I believe it might be beneficial, but I'm concerned about the ROI."
++
++9. **AI Facilitator:** "[Participant 2], your initial reaction?"
++
++10. **Participant 2:** "I agree with the proposal."
++
++11. **AI Facilitator:** "Considering the concerns raised by [Participant 1] about ROI, I suggest a modification: Increase the budget by 10% with a detailed ROI analysis after 2 months. Let's now proceed to the consent round with this amended proposal. [Participant 1], are you willing to give your consent to this modified proposal?"
++
++12. **Participant 1:** "Yes, I am."
++
++13. **AI Facilitator:** "Thank you. [Participant 2], with the modified proposal, do you give your consent?"
++
++14. **Participant 2:** "Yes, I consent."
++
++15. **AI Facilitator:** "The proposal to increase the marketing budget by 10% with an ROI analysis after 2 months has been consented to by all participants. This concludes our meeting."
+
+# 2023-08-09 09:48:53.315218
++1 yaml
+
+# 2023-08-09 09:49:43.907101
++2 At first we just use chatgpt 4 but the script should be written in a way that also other llms can be connected later on
+
+# 2023-08-09 09:56:04.921956
++3 all interactions are just on the command line. 4 for now there won't be any persistance 5 please use python and langchain to connect to openai and to create the Facilitator agent. I can provide you with examples later on for that.
+
+# 2023-08-09 09:57:26.540959
++Yes but I want to clarify some things. 
+
+# 2023-08-09 09:58:59.823264
++2 The python class to represent the facilitator should make use of langchains autonomous agent class. 3 I think participant should be an abstract base class and HumanParticipant and AIParticipant should inherit from it. 
+
+# 2023-08-09 10:01:28.868114
++yes that is good but the facilitator class doesn't need to inherit from the autonomous agent class it should just make use of it. Shall I now provide you with langchain examples so you undertstand better how to use langchain?
+
+# 2023-08-09 14:26:29.222500
++ReAct
++This walkthrough showcases using an agent to implement the ReAct logic.
++
++from langchain.agents import load_tools
++from langchain.agents import initialize_agent
++from langchain.agents import AgentType
++from langchain.llms import OpenAI
++
++First, let's load the language model we're going to use to control the agent.
++
++llm = OpenAI(temperature=0)
++
++Next, let's load some tools to use. Note that the llm-math tool uses an LLM, so we need to pass that in.
++
++tools = load_tools(["serpapi", "llm-math"], llm=llm)
++
++Finally, let's initialize an agent with the tools, the language model, and the type of agent we want to use.
++
++agent = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
++
++
++Now let's test it out!
++
++agent.run("Who is Leo DiCaprio's girlfriend? What is her current age raised to the 0.43 power?")
++
++
++    > Entering new AgentExecutor chain...
++     I need to find out who Leo DiCaprio's girlfriend is and then calculate her age raised to the 0.43 power.
++    Action: Search
++    Action Input: "Leo DiCaprio girlfriend"
++    Observation: Camila Morrone
++    Thought: I need to find out Camila Morrone's age
++    Action: Search
++    Action Input: "Camila Morrone age"
++    Observation: 25 years
++    Thought: I need to calculate 25 raised to the 0.43 power
++    Action: Calculator
++    Action Input: 25^0.43
++    Observation: Answer: 3.991298452658078
++    
++    Thought: I now know the final answer
++    Final Answer: Camila Morrone is Leo DiCaprio's girlfriend and her current age raised to the 0.43 power is 3.991298452658078.
++    
++    > Finished chain.
++
++
++    "Camila Morrone is Leo DiCaprio's girlfriend and her current age raised to the 0.43 power is 3.991298452658078."
++
++
++Using chat models
++You can also create ReAct agents that use chat models instead of LLMs as the agent driver.
++
++from langchain.chat_models import ChatOpenAI
++
++chat_model = ChatOpenAI(temperature=0)
++agent = initialize_agent(tools, chat_model, agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
++agent.run("Who is Leo DiCaprio's girlfriend? What is her current age raised to the 0.43 power?")
++
++
++
+
+# 2023-08-09 14:43:01.720561
++No I changed my mind about using the agent class. Here is a new plan: We use a normal chat model from langchain for the facilitator and explain to the model in english how to facilitate the groups process. We also instruct it to clearly call out the next step like "[Participant1] Do you have any questions about this proposal?" or "[Participant2] Do you consent to this proposal?". Then in the facilitator class we call the method "ask_question" of that specific participant. And if this is a human participant in the HumanParticipant class the method ask_question is implemented by prompting the system and in the AIParticipant class it is implemented as using the LLM to answer. During this whole process we need to remember the whole conversation in a history class so that we can pass this whole conversation to the facilitator LLM and to the AIParticipants LLM.
+
+# 2023-08-09 14:44:33.083941
++Yes that is very good. Now would you like an example code how an llm can be used with langchain?
+
+# 2023-08-09 14:48:42.936122
++ok I have an example script shall I add that to the chat or shall i copy the code into the chat?
+
+# 2023-08-09 14:49:04.544867
++/add example.py
+
+# 2023-08-09 14:49:38.434672
++I just added the file, can you not read it?
+
+# 2023-08-09 14:50:09.216252
++/drop example
+
+# 2023-08-09 14:50:13.065088
++/drop example.py
+
+# 2023-08-09 14:50:22.172316
++
++
++import os
++from dotenv import load_dotenv, find_dotenv
++from langchain import PromptTemplate, LLMChain, OpenAI
++from langchain import ConversationChain
++from langchain.chat_models import ChatOpenAI
++from langchain.prompts.chat import (
++    SystemMessage, HumanMessagePromptTemplate,
++    ChatPromptTemplate,
++)
++from config.config import Config
++
++# test change
++
++load_dotenv(find_dotenv())
++OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
++
++
++class History:
++    def __init__(self):
++        self.history = []
++
++    def add_to_history(self, agent_name, response):
++        self.history.append(f"{agent_name} says: {response}")
++
++    def get_full_history(self):
++        return "\n".join(self.history)
++    
++
++class Agent:
++    def __init__(self, name, backstory, temperature):
++        self.name = name
++        self.backstory = backstory
++        self.temperature = temperature
++        self.llm = ChatOpenAI(temperature=self.temperature, model="gpt-4")
++        
++        self.prompt = PromptTemplate.from_template(Config.PROMPT_TEMPLATE)
++        
++        self.chain = LLMChain(prompt=self.prompt, llm=self.llm )
++        
++    
++    def think(self, question, history):
++        response = self.chain.run(question=question, history=history.get_full_history(),agent_name=self.name, agent_backstory=self.backstory)
++        return response
++
++
++class Discussion:
++    def __init__(self, agents, history):
++        self.agents = agents
++        self.tmp_inc = 0
++        self.history = history
++
++    def start(self, question):
++        
++        while not self.is_conclusive():
++            for agent in self.agents:
++                respond = agent.think(question, self.history)
++                self.history.add_to_history(agent.name, respond)
++        # After the conversation is finished print the whole history
++        print(self.history.get_full_history())
++                
++
++    def is_conclusive(self):
++        # for testing purpose we just return yes after 1 iterations
++        self.tmp_inc += 1
++        if self.tmp_inc > 1:
++            return True
++        return False
++
++        # Implement the real logic to check if the discussion is conclusive
++
++
++history = History()
++
++# Prompt for question at the beginning
++question = input("Please enter your question: ")
++
++# Create agents
++agent_a = Agent("Agent-A", "You are a genius math professor", 0.5)
++agent_b = Agent("Agent-B", "You are a genius scientist", 0.6)
++agent_c = Agent("Agent-C", "You are a genius artist", 0.7)
++
++# Start discussion
++discussion = Discussion([agent_a, agent_b, agent_c], history)
++discussion.start(question)
++
++
++
++
+
+# 2023-08-09 14:51:22.433994
++yes now let's create the whole project
+
+# 2023-08-09 14:54:37.876618
++yes lets write it in files please
+
+# 2023-08-09 14:57:43.675806
++yes but i can't find any of these files. Are you not able to create files?
+
+# 2023-08-09 16:04:03.369336
++can you please reformat all python files. There are many syntax errors
+
+# 2023-08-09 16:04:31.381509
++please reformat main.py
+
+# 2023-08-09 16:05:04.879973
++just to clean it up because there are whitespaces at the beginning of many lines which shouldn't be there
+
+# 2023-08-09 16:07:00.649401
++now please do the same for `participant.py`
+
+# 2023-08-09 16:09:20.788885
++and now `facilitator.py`
+
+# 2023-08-09 16:09:45.855374
++/add facilitator.py
+
+# 2023-08-11 11:09:23.509840
++create a new method in facilitator class to create a list of all participants as a simple string listing their names comma seperated
