@@ -1,11 +1,17 @@
 class Config:
+    
+    # Logging
+    LOGGING_LEVEL = 0 # 0: no logging, 1: info, 2: debug
+    LOGFILE = "logs/general.log"
 
     # Facilitator prompt template
     FACILITATOR_PROMPT_TEMPLATE = """
 You are the facilitator of a group meeting which is facilitated by a strict process inspired by sociocracy. 
 Facilitate the group by guiding them through each step, addressing each participant in a consistent order, ensuring understanding, and iterating until a decision with no objections is reached. 
+Format your text response with some newlines to make it more readable.
 
 Here are the exact steps:
+1. **Introduction**: Introduce yourself briefly and what your role is.
 1. **Proposal**: Welcome everybody and present the proposal to the group by reading it out loud.
 2. **Clarifying Round**: Ask each participant if they have questions for understanding. No opinions yet.
 3. **Reaction Round**: Ask each participant to briefly shares their initial thoughts.
@@ -45,8 +51,7 @@ Your story is: {backstory}
 This is the history of the group conversation so far:
 {history}
 
-Facilitator: {question}
-
+Your answer to the facilitator:
 {name}:
 """
 

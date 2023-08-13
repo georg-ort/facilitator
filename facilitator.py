@@ -1,26 +1,26 @@
  # facilitator.py                                                                                                                       
 
+# system imports
 import os
+from loguru import logger
+from pydantic import BaseModel, Field, validator
+from typing import Optional
+
+# project imports
+from config.config import Config
+
+# langchain imports
 from langchain import PromptTemplate, LLMChain
 from langchain.chat_models import ChatOpenAI
-from config.config import Config
-from loguru import logger
 from langchain.callbacks import FileCallbackHandler
-
 from langchain.output_parsers import PydanticOutputParser
-from pydantic import BaseModel, Field, validator
-
-# logging
-logger.add("all_log.log", colorize=True, enqueue=True)
-handler = FileCallbackHandler(logger)
-
 
 # Structured Answer from Facilitator
 class FacilitatorResponse(BaseModel):
     text: str = Field(description="the whole text what the facilitator says")
     current_proposal: str = Field(description="the current proposal")
-    next_step: str = Field(description="what the facilitator wants to do next (speak_to_group, speak_to_participant, end_meeting)")
-    participant: str = Field(description="who the facilitator wants to speak to next")
+    next_step: str = Field(description="what the facilitator wants to do next (speak_to_group, speak_to_participant, end_meeting, abort_meeting)")
+    participant: Optional[str] = Field(description="who the facilitator wants to speak to next")
     
     # You can add custom validation logic easily with Pydantic.
     @validator('next_step')
@@ -46,8 +46,8 @@ class Facilitator:
         
         self.chain = LLMChain(prompt=self.prompt, 
                               llm=self.llm, 
-                              callbacks=[handler], 
-                              verbose=True )
+                              callbacks=[FileCallbackHandler(Config.LOGFILE)], 
+                              verbose=True if Config.LOGGING_LEVEL > 1 else False )
         
         
     
@@ -55,75 +55,54 @@ class Facilitator:
         return ', '.join([participant.name for participant in self.participants])    
 
 
-    # Actually run the facilitator
-    def run(self, proposal) -> FacilitatorResponse:
+    # Actually call the LLM and parse the response
+    def get_response(self, proposal) -> FacilitatorResponse:
         response = self.chain.run(proposal=proposal, 
                                   history=self.history.get_full_history(), 
                                   participant_list=self.get_participant_names(), 
                                   format_instructions=self.parser.get_format_instructions(),
-                                  name=self.name,
-                                  verbose=True)
+                                  name=self.name)
         parsed_response = self.parser.parse(response)
-        logger.info(parsed_response)
+        logger.info(parsed_response) if Config.LOGGING_LEVEL > 0 else None
         return parsed_response
 
 
     # Logic how the facilitator guides the group
     def guide(self):
-        
-        print("""           
-----------------------------------      
-Welcome to the facilitator demo!
-""")
+        print("\n\n----------------------------------\nWelcome to the facilitator demo!\n")
         
         initial_proposal = input("Please enter your proposal: ")
         
-        tmp_inc = 0
-        
         while True:
-            tmp_inc += 1
-            
-            parsed_response = self.run(initial_proposal)
-            
-            print(parsed_response["text"])
+            parsed_response = self.get_response(initial_proposal)
+            self.history.add_to_history(self.name, parsed_response.text)
+            # \033[1;32;40m CHEESY \033[0;0m
+            print(f"[\033[1;32;40m{self.name}\033[0;0m]: {parsed_response.text}")
             
             # What does the facilitator whant to do next?
             
             # speak_to_group
-            if parsed_response["next_step"] == "speak_to_group":
-                self.history.add_to_history("Facilitator", parsed_response["text"])
+            if parsed_response.next_step == "speak_to_group":
+                # implement logic to speak to the group here
+                pass
                 
             # speak_to_participant
-            elif parsed_response["next_step"] == "speak_to_participant":  
-                participant = next(participant for participant in self.participants if participant.name == parsed_response["participant"])
-                response = participant.respond(parsed_response["text"], self.history)
+            elif parsed_response.next_step == "speak_to_participant":  
+                participant = next(participant for participant in self.participants if participant.name == parsed_response.participant)
+                response = participant.respond(parsed_response, self.history)
                 self.history.add_to_history(participant.name, response)
             
             # end_meeting
-            elif parsed_response["next_step"] == "end_meeting":
-                current_proposal=parsed_response["current_proposal"]
-                print(f"""    
-------                        
-Final Proposal: 
-{current_proposal}
-------
-
-""", )
-                
+            elif parsed_response.next_step == "end_meeting":
+                current_proposal=parsed_response.current_proposal
+                print(f"\n------\nFinal Proposal:\n{current_proposal}\n------")
                 break
                
             # abort_meeting
-            elif parsed_response["next_step"] == "abort_meeting":
-                break
-            elif tmp_inc > 3:
-                break
-            
+            elif parsed_response.next_step == "abort_meeting":
+                break 
         
-        print("""      
-             
-Goodbye!
-----------------------------------""")
-                
+        print("\n\nGoodbye!\n----------------------------------\n\n")        
         return
     
     
