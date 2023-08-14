@@ -36,13 +36,13 @@ class AIParticipant(Participant):
         super().__init__(name)
         self.backstory = backstory
         
-        self.llm = ChatOpenAI(temperature=temperature, model="gpt-4")  
+        self.llm = ChatOpenAI(temperature=temperature, model="gpt-3.5-turbo")  
         self.prompt = PromptTemplate.from_template(Config.AIPARTICIPANT_PROMPT_TEMPLATE)
         self.chain = LLMChain(prompt=self.prompt, 
                               llm=self.llm, 
                               verbose=True if Config.LOGGING_LEVEL > 1 else False )
         
-    # Actually call the LLM and respond
+    # Generate the response from the AI participant
     def get_response(self, history: History) -> str:
         response = self.chain.run(name=self.name,
                                   backstory=self.backstory,
@@ -52,5 +52,5 @@ class AIParticipant(Participant):
     
     def respond(self, facilitator_response: FacilitatorResponse, history: History) -> str:
         response = self.get_response(history)
-        print(f"[\033[1;34;40m{self.name}\033[0;0m]: {response}")
+        print(f"[\033[1;33;40m{self.name}\033[0;0m]: {response}")
         return response

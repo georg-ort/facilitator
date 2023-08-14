@@ -55,7 +55,7 @@ class Facilitator:
         return ', '.join([participant.name for participant in self.participants])    
 
 
-    # Actually call the LLM and parse the response
+    # Generate and parse the response from the facilitator
     def get_response(self, proposal) -> FacilitatorResponse:
         response = self.chain.run(proposal=proposal, 
                                   history=self.history.get_full_history(), 
@@ -76,7 +76,6 @@ class Facilitator:
         while True:
             parsed_response = self.get_response(initial_proposal)
             self.history.add_to_history(self.name, parsed_response.text)
-            # \033[1;32;40m CHEESY \033[0;0m
             print(f"[\033[1;32;40m{self.name}\033[0;0m]: {parsed_response.text}")
             
             # What does the facilitator whant to do next?
